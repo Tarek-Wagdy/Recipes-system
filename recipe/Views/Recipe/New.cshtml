@@ -1,0 +1,44 @@
+﻿@using recipe.ViewModels
+@model RecipeViewModel
+@{
+    ViewData["Title"] = "New";
+}
+<h2 style="text-align:center">New Recipe</h2>
+<form asp-action="New" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+     <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="inp form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <br />
+     <div class="form-group">
+        <label asp-for="Ingredients" class="control-label"></label>
+        <input id="currentIngredient" type="text" class="inp form-control">
+        <button style="margin-top:15px" onclick="addIngredient(); return false;" class="btn btn-primary">Add-ingredient</button>
+        <br />
+        <div id="ingredientDiv" class="form-group" style="margin:15px">
+
+        </div>
+        <br />
+        <span asp-validation-for="Ingredients" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="Methods" class="control-label"></label>
+        <input id="currentMethod" type="text" class="inp form-control">
+        <button style="margin-top:15px" onclick="addMethod(); return false;" class="btn btn-primary">Add-step</button>
+        <br />
+        <div id="methodDiv" class="form-group" style="margin:15px">
+
+        </div>
+        <br />
+        <span asp-validation-for="Methods" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="File" class="control-label"></label>
+        <input type="file" asp-for="File" class="inp form-control">
+        <span asp-validation-for="File" class="text-danger"></span>
+    </div>
+    <input style="margin-top:15px" class="btn btn-danger" value="Add-Recipe" type="submit">
+</form>
+

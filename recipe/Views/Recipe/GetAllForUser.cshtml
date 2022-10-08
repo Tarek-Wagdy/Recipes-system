@@ -1,0 +1,18 @@
+﻿@model List<Recipe>
+@{
+    ViewData["Title"] = "My recipes";
+}
+<h1>My Recipes <a href="/recipe/New" class="btn btn-primary">Add-New</a></h1>
+
+@foreach (Recipe item in Model)
+{
+    <div  class="card" style="width:400px;display:inline-block;margin:10px">
+          <img style="height:400px" class="card-img-top" src="/images/@item.image" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">@item.Name</h4>
+            <a href="/recipe/GetById/@item.Id" class="btn btn-primary">Details</a>
+            <a href="/recipe/Update/@item.Id" class="btn btn-success">Edit</a>
+            <a href="/recipe/Delete/@item.Id" class="btn btn-danger">Delete</a>
+          </div>
+    </div>
+}

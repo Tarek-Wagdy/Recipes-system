@@ -1,0 +1,55 @@
+﻿@using recipe.ViewModels
+@model RecipeViewModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update</h1>
+<form asp-action="Update" asp-controller="recipe" enctype="multipart/form-data">
+    <input  asp-for="RecipeId" hidden />
+     <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="inp form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <br />
+     <div class="form-group">
+        <label asp-for="Ingredients" class="control-label"></label>
+        <input id="currentIngredient" type="text" class="inp form-control">
+        <button style="margin-top:15px" onclick="addIngredientUpdate(); return false;" class="btn btn-primary">Add-ingredient</button>
+        <br />
+        <div id="ingredientDiv" class="form-group" style="margin:15px">
+            @for (int i=0;i<Model.Ingredients.Count;i++)
+            {
+                <div id="ing-@i">
+                    <input  value="@Model.Ingredients[i]" name="Ingredients" asp-for="Ingredients" class="inp2 form-control">
+                    <span onclick="deleteItem('ing-@i')" class="btn btn-sm btn-danger">X</span>
+                </div>
+                
+            }
+        </div>
+        <br />
+        <span asp-validation-for="Ingredients" class="text-danger"></span>
+    </div>
+     <div class="form-group">
+        <label asp-for="Methods" class="control-label"></label>
+        <input id="currentMethod" type="text" class="inp form-control">
+        <button style="margin-top:15px" onclick="addMethodUpdate(); return false;" class="btn btn-primary">Add-step</button>
+        <br />
+        <div id="methodDiv" class="form-group" style="margin:15px">
+            @for(int i=0;i<Model.Methods.Count;i++)
+            {
+                <div id="mth-@i">
+                    <input  value="@Model.Methods[i]" name="Methods" asp-for="Methods" class="inp2 form-control">
+                    <span class="btn btn-sm btn-danger" onclick="deleteItem('mth-@i')">X</span>
+                </div>
+                
+            }
+        </div>
+        <br />
+        <span asp-validation-for="Methods" class="text-danger"></span>
+    </div>
+    
+    <input style="margin-top:15px" class="btn btn-danger" value="Update" type="submit">
+</form>
+

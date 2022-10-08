@@ -1,0 +1,28 @@
+﻿@using recipe.ViewModels
+@model IndexViewModel
+@{
+    ViewData["Title"] = "All Recipes";
+}
+
+<h1>Recipes <a href="/recipe/New" class="btn btn-primary">Add-New</a></h1>
+<form asp-action="Index" asp-controller="recipe" method="get">
+    <label >Filter</label>
+    <select  asp-for="Filter" onchange="filter()" >
+        <option disabled selected>select ...</option>
+         <option value="default">Oldest-Date</option>
+        <option  value="newest">Newest-Date</option>
+    </select>
+</form>
+
+
+@foreach (Recipe item in Model.Recipes)
+{
+    <div  class="card" style="width:400px;display:inline-block;margin:10px">
+          <img style="height:400px" class="card-img-top" src="/images/@item.image" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">@item.Name</h4>
+            <a href="/recipe/GetById/@item.Id" class="btn btn-primary">Details</a>
+          </div>
+    </div>
+}
+
